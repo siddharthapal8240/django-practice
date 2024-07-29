@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+ {% block title %}
+ mediahub
+ {% endblock %}
+
+ {% block content %}
+ <h1>Media Hub</h1>
+
+ <a class="btn btn-primary mb-3" href="{% url 'media_create' %}">Create post</a>
+
+ <div class="cntainer row gap-3">
+    {% for media in media  %}
+    <div class="card" style="width: 18rem;">
+        <img src="{{media.photo.url}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{media.user.username}}</h5>
+          <p class="card-text">{{media.text}}</p>
+          {% if media.user == user %}
+          <a href="{% url 'media_edit' media.id %}" class="btn btn-primary">Edit</a>
+          <a href="{% url 'media_delete' media.id %}" class="btn btn-danger">Delete</a>
+
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+ </div>
+
+
+ {% endblock %}

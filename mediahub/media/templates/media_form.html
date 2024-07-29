@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+ {% block title %}
+ mediahub
+ {% endblock %}
+
+ {% block content %}
+ <h1 >Media Hub</h1>
+
+ <h2> {%if form.instance.pk %} Edit Post {%else%} Create Post {%endif%} </h2>
+ 
+    <form method="post" enctype="multipart/form-data" class="form" >
+        {% csrf_token %} 
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Create potst</button>
+        <a href="{% url 'media_list' %}" class="btn btn-secondary">Cancel</a>
+
+ {% endblock %}
