@@ -31,18 +31,18 @@ def media_create(request):
      
 @login_required    
 def media_edit(request, media_id):
-         media = get_list_or_404(media, pk=media_id, user=request.user)
-         if request.method == 'POST':
-             form = MediaForm(request.POST, request.FILES, instance=media)
-             if form.is_valid():
-                 media = form.save(commit=False)
-                 media.user = request.user
-                 media.save()
-                 login(request, user)
-                 return redirect('media_list')
-         else:
-             form = MediaForm(instance=media)
-             return render(request, 'media_form.html', {'form': form})
+    media = get_list_or_404(media, pk=media_id, user=request.user)
+    if request.method == 'POST':
+     form = MediaForm(request.POST, request.FILES, instance=media)
+    if form.is_valid():
+        media = form.save(commit=False)
+        media.user = request.user
+        media.save()
+        login(request, user)
+        return redirect('media_list')
+    else:
+      form = MediaForm(instance=media)
+    return render(request, 'media_form.html', {'form': form})
          
 @login_required         
 def media_delete(request, media_id):
